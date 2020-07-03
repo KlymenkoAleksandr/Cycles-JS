@@ -136,18 +136,23 @@ document.write('<hr>');
 
 let min = 0;
 let max = 100;
-let random = Math.random() * (max - min) + min;
-let attempt = 10;
+let random = min + Math.floor(Math.random() * (max - min))
+let attempt = 3;
 let question = +prompt('Угадайте число');
 
-
+console.log(random);
 for (let i = 2; i <= attempt; i++) {
-    if (question === random) {
-        alert('Вы угадали')
-    } else {
-        question = +prompt('Повторите попытку');
+    if (question < random) {
+        alert(`Загаданное число больше, вы ввели ${question}`);
+        question = +prompt('Угадайте число');
+    } else if (question > random) {
+        alert(`Загаданное число меньше, вы ввели ${question}`);
+        question = +prompt('Угадайте число');
     }
-    if (question != random) {
-        alert('Попробуйте в следующий раз');
-    }
+}
+
+if (question === random) {
+    alert(`Вы угадали число ${random}`);
+} else {
+    alert(`Вы не угадали, загаданое число ${random}`);
 }
